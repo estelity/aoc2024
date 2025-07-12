@@ -1,11 +1,34 @@
+# day 3 pt 1
+
+def findDo(i, input):
+    if input[i:i+4] == "do()":
+        return True
+    else:
+        return False
+
+def findDont(i, input):
+    if input[i:i+7] == "don't()":
+        return True
+    else:
+        return False
+
 with open('/Users/grace.shen/Personal/aoc2024/day3/day3input.txt') as file:
     input = file.read()
 
 valid = []
+on = True
 
 for i in range(len(input) - 3):
     product = 1
     length = 0
+
+    if findDo(i, input):
+        on = True
+    if findDont(i, input):
+        on = False
+
+    if not on:
+        continue
 
     # mul(8,9)
     if input[i:i+4] == "mul(":
